@@ -31,3 +31,18 @@ DriveFlow is a car rental Web API built with ASP.NET Core 8.
 - DriveFlow.Core
 - DriveFlow.Infrastructure
 - DriveFlow.Tests
+
+
+## Authentication
+
+The API uses JWT Bearer Authentication.
+
+Protected endpoints require a valid JWT token.
+
+## Testing
+
+The project includes NUnit unit tests for the business logic layer.
+
+## API Documentation
+
+Swagger is enabled for testing all endpoints.
