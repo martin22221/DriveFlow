@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// Database Configuration
 builder.Services.AddDbContext<DriveFlowDbContext>(options =>
     options.UseSqlServer(connectionString, sqlOptions =>
         sqlOptions.MigrationsAssembly("DriveFlow.Infrastructure")));
@@ -31,6 +32,7 @@ builder.Services
 var jwtKey = builder.Configuration["Jwt:Key"]!;
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
 
+// JWT Authentication Configuration
 builder.Services
     .AddAuthentication(options =>
     {
@@ -71,6 +73,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddEndpointsApiExplorer();
+
+// Swagger Configuration
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "DriveFlow API", Version = "v1" });
