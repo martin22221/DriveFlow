@@ -46,3 +46,9 @@ The project includes NUnit unit tests for the business logic layer.
 ## API Documentation
 
 Swagger is enabled for testing all endpoints.
+
+
+## Default Admin Account
+
+Email: admin@driveflow.com  
+Password: Admin123
