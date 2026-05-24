@@ -51,4 +51,16 @@ Swagger is enabled for testing all endpoints.
 ## Default Admin Account
 
 Email: admin@driveflow.com  
-Password: Admin123
+Password: Admin123							
+
+
+
+
+## Main Endpoints
+
+- /api/Auth
+- /api/Cars
+- /api/Categories
+- /api/Bookings
+- /api/Reviews
+- /api/Admin
