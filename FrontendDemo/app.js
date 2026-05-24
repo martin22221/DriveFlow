@@ -1,21 +1,57 @@
-const apiUrl = "https://localhost:5001/api/cars";
+const apiUrl = "https://localhost:59102/api/Cars";
 
-document.getElementById("loadCarsBtn").addEventListener("click", async () => {
-    const response = await fetch(apiUrl);
-    const cars = await response.json();
+const loadCarsBtn = document.getElementById("loadCarsBtn");
+const carsContainer = document.getElementById("cars");
 
-    const container = document.getElementById("cars");
-    container.innerHTML = "";
+loadCarsBtn.addEventListener("click", loadCars);
 
-    cars.forEach(car => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-            <h2>${car.brand} ${car.model}</h2>
-            <p>Year: ${car.year}</p>
-            <p>Price per day: ${car.pricePerDay} лв.</p>
-            <p>Category: ${car.categoryName}</p>
+async function loadCars() {
+    try {
+
+        carsContainer.innerHTML = "<p>Loading cars...</p>";
+
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+            throw new Error("Failed to load cars");
+        }
+
+        const cars = await response.json();
+
+        carsContainer.innerHTML = "";
+
+        cars.forEach(car => {
+
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+                <img src="${car.imageUrl}" alt="${car.brand}">
+                
+                <div class="card-content">
+                    <h2>${car.brand} ${car.model}</h2>
+
+                    <p><strong>Year:</strong> ${car.year}</p>
+
+                    <p class="price">${car.pricePerDay} lv/day</p>
+
+                    <p>${car.description ?? "No description available."}</p>
+
+                    <div class="category">
+                        ${car.categoryName}
+                    </div>
+                </div>
+            `;
+
+            carsContainer.appendChild(card);
+        });
+
+    } catch (error) {
+
+        carsContainer.innerHTML = `
+            <p>Error loading cars.</p>
         `;
-        container.appendChild(card);
-    });
-});
+
+        console.error(error);
+    }
+}

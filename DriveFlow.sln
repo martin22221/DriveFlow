@@ -10,6 +10,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveFlow.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveFlow.Tests", "DriveFlow.Tests\DriveFlow.Tests.csproj", "{44444444-4444-4444-4444-444444444444}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		FrontendDemo\app.js = FrontendDemo\app.js
+		FrontendDemo\index.html = FrontendDemo\index.html
+		FrontendDemo\styles.css = FrontendDemo\styles.css
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +42,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B76DAAC-9921-4CA4-AD32-62DF2723A92B}
 	EndGlobalSection
 EndGlobal

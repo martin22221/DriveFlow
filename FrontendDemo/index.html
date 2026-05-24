@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriveFlow Demo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>DriveFlow Cars</h1>
-    <button id="loadCarsBtn">Load Cars</button>
-    <div id="cars"></div>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>DriveFlow</h1>
+            <p>Car Rental API Frontend Demo</p>
+        </div>
+
+        <div class="actions">
+            <button id="loadCarsBtn">Load Cars</button>
+        </div>
+
+        <div id="cars" class="cars-grid"></div>
+
+    </div>
 
     <script src="app.js"></script>
 </body>
