@@ -7,8 +7,7 @@ loadCarsBtn.addEventListener("click", loadCars);
 
 async function loadCars() {
     try {
-
-        carsContainer.innerHTML = "<p>Loading cars...</p>";
+        carsContainer.innerHTML = `<p class="loading">Loading cars...</p>`;
 
         const response = await fetch(apiUrl);
 
@@ -21,25 +20,18 @@ async function loadCars() {
         carsContainer.innerHTML = "";
 
         cars.forEach(car => {
-
             const card = document.createElement("div");
             card.className = "card";
 
             card.innerHTML = `
-                <img src="${car.imageUrl}" alt="${car.brand}">
-                
+                <img src="${car.imageUrl}" alt="${car.brand} ${car.model}">
+
                 <div class="card-content">
                     <h2>${car.brand} ${car.model}</h2>
-
                     <p><strong>Year:</strong> ${car.year}</p>
-
                     <p class="price">${car.pricePerDay} lv/day</p>
-
                     <p>${car.description ?? "No description available."}</p>
-
-                    <div class="category">
-                        ${car.categoryName}
-                    </div>
+                    <div class="category">${car.categoryName}</div>
                 </div>
             `;
 
@@ -47,11 +39,7 @@ async function loadCars() {
         });
 
     } catch (error) {
-
-        carsContainer.innerHTML = `
-            <p>Error loading cars.</p>
-        `;
-
+        carsContainer.innerHTML = `<p class="error">Failed to load cars from the API.</p>`;
         console.error(error);
     }
 }

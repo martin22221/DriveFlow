@@ -8,20 +8,29 @@
 </head>
 <body>
 
-    <div class="container">
+    <header class="hero">
+        <nav class="navbar">
+            <div class="logo">DriveFlow</div>
+            <span class="badge">API Demo</span>
+        </nav>
 
-        <div class="header">
-            <h1>DriveFlow</h1>
-            <p>Car Rental API Frontend Demo</p>
-        </div>
+        <div class="hero-content">
+            <h1>Find your next rental car</h1>
+            <p>Live frontend demo connected to the ASP.NET Core Web API.</p>
 
-        <div class="actions">
             <button id="loadCarsBtn">Load Cars</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="section-title">
+            <h2>Available Cars</h2>
+            <p>Data is loaded with fetch from the backend API.</p>
         </div>
 
         <div id="cars" class="cars-grid"></div>
+    </main>
 
-    </div>
     <footer>
         <p>DriveFlow © 2026</p>
     </footer>
