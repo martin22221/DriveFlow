@@ -100,3 +100,4 @@ document.getElementById("sortSelect")
 
         renderCars(sortedCars);
     });
+      
