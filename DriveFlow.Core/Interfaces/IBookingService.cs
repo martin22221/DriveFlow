@@ -8,3 +8,7 @@ public interface IBookingService
     Task<int> CreateAsync(CreateBookingDto model, string userId);
     Task<bool> CancelAsync(int id, string userId);
 }
+
+
+
+                       

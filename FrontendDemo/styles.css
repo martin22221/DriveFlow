@@ -158,3 +158,22 @@ footer {
         margin-bottom: 45px;
     }
 }
+
+.toolbar {
+    margin-bottom: 24px;
+}
+
+    .toolbar input {
+        width: 100%;
+        max-width: 420px;
+        padding: 14px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        font-size: 16px;
+        outline: none;
+    }
+
+        .toolbar input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        }
