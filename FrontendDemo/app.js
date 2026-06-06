@@ -84,3 +84,4 @@ searchInput.addEventListener("input", function () {
 
     renderCars(filteredCars);
 });
+
