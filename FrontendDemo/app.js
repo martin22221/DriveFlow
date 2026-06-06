@@ -32,6 +32,8 @@ async function loadCars() {
 }
 
 function renderCars(cars) {
+    document.getElementById("carsCount")
+        .textContent = `Available cars: ${cars.length}`;
 
     carsContainer.innerHTML = "";
 
