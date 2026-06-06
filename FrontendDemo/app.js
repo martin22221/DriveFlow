@@ -85,3 +85,18 @@ searchInput.addEventListener("input", function () {
     renderCars(filteredCars);
 });
 
+document.getElementById("sortSelect")
+    .addEventListener("change", function () {
+
+        const sortedCars = [...loadedCars];
+
+        if (this.value === "low") {
+            sortedCars.sort((a, b) => a.pricePerDay - b.pricePerDay);
+        }
+
+        if (this.value === "high") {
+            sortedCars.sort((a, b) => b.pricePerDay - a.pricePerDay);
+        }
+
+        renderCars(sortedCars);
+    });
