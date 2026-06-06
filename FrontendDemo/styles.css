@@ -182,4 +182,12 @@ footer {
     margin-bottom: 20px;
     color: #64748b;
     font-weight: 600;
-}   
+}
+
+.empty-state {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}

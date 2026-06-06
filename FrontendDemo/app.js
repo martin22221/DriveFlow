@@ -2,6 +2,8 @@ const apiUrl = "https://localhost:59102/api/Cars";
 
 const loadCarsBtn = document.getElementById("loadCarsBtn");
 const carsContainer = document.getElementById("cars");
+const searchInput = document.getElementById("searchInput");
+const carsCount = document.getElementById("carsCount");
 
 let loadedCars = [];
 
@@ -21,8 +23,7 @@ async function loadCars() {
 
         loadedCars = cars;
 
-        renderCars(cars);
-
+        renderCars(loadedCars);
     } catch (error) {
         carsContainer.innerHTML =
             `<p class="error">Failed to load cars from the API.</p>`;
@@ -32,13 +33,21 @@ async function loadCars() {
 }
 
 function renderCars(cars) {
-    document.getElementById("carsCount")
-        .textContent = `Available cars: ${cars.length}`;
+    carsCount.textContent = `Available cars: ${cars.length}`;
 
     carsContainer.innerHTML = "";
 
-    cars.forEach(car => {
+    if (cars.length === 0) {
+        carsContainer.innerHTML = `
+            <div class="empty-state">
+                No cars found.
+            </div>
+        `;
 
+        return;
+    }
+
+    cars.forEach(car => {
         const card = document.createElement("div");
 
         card.className = "card";
@@ -65,15 +74,13 @@ function renderCars(cars) {
     });
 }
 
-document.getElementById("searchInput")
-    .addEventListener("input", function () {
+searchInput.addEventListener("input", function () {
+    const searchTerm = this.value.toLowerCase();
 
-        const searchTerm = this.value.toLowerCase();
+    const filteredCars = loadedCars.filter(car =>
+        car.brand.toLowerCase().includes(searchTerm) ||
+        car.model.toLowerCase().includes(searchTerm)
+    );
 
-        const filteredCars = loadedCars.filter(car =>
-            car.brand.toLowerCase().includes(searchTerm) ||
-            car.model.toLowerCase().includes(searchTerm)
-        );
-
-        renderCars(filteredCars);
-    });
+    renderCars(filteredCars);
+});
