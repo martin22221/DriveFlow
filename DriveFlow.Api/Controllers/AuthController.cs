@@ -46,39 +46,80 @@ public class AuthController : ControllerBase
 
         await userManager.AddToRoleAsync(user, "User");
 
-        return Ok(new { Message = "Registration successful." });
+        return Ok(new
+        {
+            Message = "Registration successful."
+        });
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequestDto model)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         var user = await userManager.FindByEmailAsync(model.Email);
 
-        if (user == null || !await userManager.CheckPasswordAsync(user, model.Password))
+        if (user == null)
         {
-            return Unauthorized(new { Message = "Invalid email or password." });
+            return Unauthorized(new
+            {
+                Message = "Invalid email or password."
+            });
+        }
+
+        var isPasswordValid = await userManager.CheckPasswordAsync(user, model.Password);
+
+        if (!isPasswordValid)
+        {
+            return Unauthorized(new
+            {
+                Message = "Invalid email or password."
+            });
         }
 
         var roles = await userManager.GetRolesAsync(user);
         var token = jwtService.GenerateToken(user, roles);
 
-        return Ok(new LoginResponseDto
+        var email = user.Email;
+
+        if (email == null)
+        {
+            return BadRequest(new
+            {
+                Message = "User email is missing."
+            });
+        }
+
+        var response = new LoginResponseDto
         {
             Token = token,
-            Email = user.Email!,
+            Email = email,
             FullName = $"{user.FirstName} {user.LastName}",
             Roles = roles.ToList()
-        });
+        };
+
+        return Ok(response);
     }
 
     [Authorize]
     [HttpGet("profile")]
     public IActionResult Profile()
     {
+        if (User.Identity == null)
+        {
+            return Unauthorized();
+        }
+
+        var username = User.Identity.Name;
+        var isAuthenticated = User.Identity.IsAuthenticated;
+
         return Ok(new
         {
-            User.Identity?.Name,
-            IsAuthenticated = User.Identity?.IsAuthenticated
+            Username = username,
+            IsAuthenticated = isAuthenticated
         });
     }
 }

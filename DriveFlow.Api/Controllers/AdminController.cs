@@ -18,9 +18,17 @@ public class AdminController : ControllerBase
 
     [HttpGet("statistics")]
     public async Task<IActionResult> Statistics()
-        => Ok(await adminService.GetStatisticsAsync());
+    {
+        var statistics = await adminService.GetStatisticsAsync();
+
+        return Ok(statistics);
+    }
 
     [HttpGet("users")]
     public async Task<IActionResult> Users()
-        => Ok(await adminService.GetUsersAsync());
+    {
+        var users = await adminService.GetUsersAsync();
+
+        return Ok(users);
+    }
 }

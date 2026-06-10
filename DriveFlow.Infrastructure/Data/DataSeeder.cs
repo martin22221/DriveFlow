@@ -128,10 +128,10 @@ public static class DataSeeder
                     Description = "Luxury SUV suitable for long trips.",
                     CategoryId = 2,
                     OwnerId = admin.Id,
-                    IsAvailable = true
+                    IsAvailable = true 
                 }
             );
-
+                                  
             await db.SaveChangesAsync();
         }
     }
